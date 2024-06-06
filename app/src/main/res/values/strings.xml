@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">POS Kedai</string>
+
+    <!-- String untuk halaman awal -->
+    <string name="kedai">Kedai Rarahaja</string>
+    <string name="tentang">Aplikasi kasir ini untuk membantu mempermudah proses transaksi pada kedai Rarahaj. Digunakan untuk staff bagian kasir yang bertugas saat cafe beroperasi. Kasir diharapkan bisa bekerja menjadi lebih optimal. </string>
+    <string name="penanda">Cashier Rarahaja App By Tugas Negara Team</string>
+
+    <!-- String untuk halaman login -->
+    <string name="login">Login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="signup_link">Don\'t have an account? Sign Up</string>
+
+    <!-- String untuk halaman sign up -->
+    <string name="signup">Sign Up</string>
+    <string name="signup_username">Username</string>
+    <string name="signup_password">Password</string>
+    <string name="signup_button">Sign Up</string>
+    <string name="login_link">Already have an account? Login</string>
+
+    <!-- Pesan kesalahan -->
+    <string name="error_empty_fields">Please fill in all fields</string>
+    <string name="error_invalid_credentials">Invalid username or password</string>
+    <!-- Anda bisa menambahkan pesan kesalahan lainnya sesuai kebutuhan -->
+
+
+</resources>

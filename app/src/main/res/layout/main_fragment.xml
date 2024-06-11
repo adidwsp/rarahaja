@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="30dp">
 
     <ImageView
         android:layout_width="240dp"
@@ -41,7 +42,7 @@
         android:layout_gravity="start"/>
 
     <EditText
-        android:id="@+id/custname"
+        android:id="@+id/customer_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
@@ -56,14 +57,15 @@
         android:layout_gravity="start"/>
 
     <EditText
-        android:id="@+id/tbnumber"
+        android:id="@+id/no_table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textShortMessage"
         android:layout_marginTop="8dp"/>
 
+
     <Button
-        android:id="@+id/change"
+        android:id="@+id/save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="NEW ORDER"

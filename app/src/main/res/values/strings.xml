@@ -29,6 +29,8 @@
     <!-- Pesan kesalahan -->
     <string name="error_empty_fields">Please fill in all fields</string>
     <string name="error_invalid_credentials">Invalid username or password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- Anda bisa menambahkan pesan kesalahan lainnya sesuai kebutuhan -->
 
 

@@ -7,10 +7,24 @@
     <string name="penanda">Cashier Rarahaja App By Tugas Negara Team</string>
 
     <!-- String untuk halaman home -->
-    <string name="start">Lets Get Started</string>
-    <string name="start1">Create your customer data</string>
-    <string name="custname">Customer Name</string>
-    <string name="tbnumber">Table Number</string>
+    <string name="start">Silahkan memulai..</string>
+    <string name="start1">Buat data pelanggan</string>
+    <string name="custname">Nama Pelanggan</string>
+    <string name="tbnumber">Nomor Meja</string>
+
+    <!-- String untuk halaman order -->
+    <string-array name="menu">
+        <item>Makanan</item>
+        <item>Minuman</item>
+    </string-array>
+
+    <!-- String untuk halaman daftar menu -->
+    <string name="tambah_menu">TAMBAHKAN MENU</string>
+    <string name="nama_menu">Nama Menu</string>
+    <string name="harga">Harga</string>
+    <string name="tambah_button">Tambahkan</string>
+    <string name="keterangan">Keterangan</string>
+
 
     <!-- String untuk halaman login -->
     <string name="login">Login</string>

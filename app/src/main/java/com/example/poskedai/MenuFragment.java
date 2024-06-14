@@ -16,19 +16,21 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class MenuFragment extends Fragment {
     TextView textView;
     CardView foodCard;
     CardView coffeeCard;
-
+    private FloatingActionButton btn_add;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.menu_fragment, container, false);
         if (view != null) {
-            textView = view.findViewById(R.id.textView);
             foodCard = view.findViewById(R.id.food_card);
             coffeeCard = view.findViewById(R.id.coffee_card);
+            btn_add = view.findViewById(R.id.btn_add);
 
             foodCard.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -41,6 +43,11 @@ public class MenuFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     loadFragment(new CoffeeFragment());
+                }
+            });
+            btn_add.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) { loadFragment(new CreateFragment());
                 }
             });
         }

@@ -12,9 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -42,7 +39,7 @@ public class MenuFragment extends Fragment {
             coffeeCard.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    loadFragment(new CoffeeFragment());
+                    loadFragment(new BeverageFragment());
                 }
             });
             btn_add.setOnClickListener(new View.OnClickListener() {

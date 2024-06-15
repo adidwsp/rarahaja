@@ -23,7 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class FoodFragment extends Fragment {
+public class BeverageFragment extends Fragment {
     AdapterDatabase adapterDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     ArrayList<ModelDatabase> foodArrayList;
@@ -33,7 +33,7 @@ public class FoodFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_food, container, false);
+        View view = inflater.inflate(R.layout.fragment_beverage, container, false);
 
         view_menu = view.findViewById(R.id.view_menu);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -63,7 +63,7 @@ public class FoodFragment extends Fragment {
                 foodArrayList = new ArrayList<>();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ModelDatabase modelDatabase = item.getValue(ModelDatabase.class);
-                    if (modelDatabase != null && "Makanan".equals(modelDatabase.getMenu_type())) {
+                    if (modelDatabase != null && "Minuman".equals(modelDatabase.getMenu_type())) {
                         foodArrayList.add(modelDatabase);
                     }
                 }

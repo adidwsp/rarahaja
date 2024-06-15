@@ -8,6 +8,17 @@
     android:orientation="vertical"
     android:id="@+id/fragment_container">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="KATEGORI MENU"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/food_card"
         android:layout_width="match_parent"
@@ -15,7 +26,7 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
         android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/colorOnSecondary">
+        app:cardBackgroundColor="@color/colorAccent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,13 +38,15 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="160dp"
-                android:src="@drawable/makanan"
+                android:src="@drawable/menu1"
                 android:scaleType="centerCrop"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Makanan"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_marginTop="5dp"
                 android:textSize="24dp"/>
 
@@ -53,7 +66,7 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
         android:layout_margin="16dp"
-        app:cardBackgroundColor="@color/colorOnSecondary">
+        app:cardBackgroundColor="@color/colorAccent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,6 +85,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Minuman"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:layout_marginTop="5dp"
                 android:textSize="24dp"/>
 

@@ -7,7 +7,7 @@
     <string name="penanda">Cashier Rarahaja App By Tugas Negara Team</string>
 
     <!-- String untuk halaman home -->
-    <string name="start">Silahkan memulai..</string>
+    <string name="start">Memulai Transaksi Baru</string>
     <string name="start1">Buat data pelanggan</string>
     <string name="custname">Nama Pelanggan</string>
     <string name="tbnumber">Nomor Meja</string>

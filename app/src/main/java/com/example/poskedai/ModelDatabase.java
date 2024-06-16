@@ -3,7 +3,7 @@ package com.example.poskedai;
 public class ModelDatabase {
     private String menu_type;
     private String menu_name;
-    private int menu_price; // Consistent naming
+    private int menu_price;
     private String menu_remarks;
     private String key;
 

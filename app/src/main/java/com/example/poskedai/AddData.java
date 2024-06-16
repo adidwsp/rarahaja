@@ -1,36 +1,31 @@
 package com.example.poskedai;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-public class AddData extends AppCompatActivity {
+public class AddData extends Fragment {
 
-    Database transactions;
+
     EditText customerName, no_table;
-    Button save;
-    protected void OnCreate(Bundle savedInstanceState) {
+    Button btn_order;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_fragment);
-        customerName = findViewById(R.id.customer_name);
-        no_table = findViewById(R.id.no_table);
-        save = findViewById(R.id.save);
+        View view = inflater.inflate(R.layout.main_fragment, container, false);
+        customerName = view.findViewById(R.id.customer_name);
+        no_table = view.findViewById(R.id.no_table);
+        btn_order = view.findViewById(R.id.btn_order);
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                save_data();
-            }
-        });
-    }
 
-    void save_data() {
-        transactions.save_data(
-                customerName.getText().toString(),
-                no_table.getText().toString()
-        );
+        return view;
     }
 }

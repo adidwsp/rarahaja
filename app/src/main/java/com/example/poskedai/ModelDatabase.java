@@ -1,5 +1,8 @@
 package com.example.poskedai;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class ModelDatabase {
     private String id_menu;
     private String menu_type;
@@ -8,6 +11,7 @@ public class ModelDatabase {
     private String menu_remarks;
     private String imageUrl;
     private String key;
+    private int qty;
 
     public ModelDatabase() {
         // Default constructor required for calls to DataSnapshot.getValue(ModelDatabase.class)
@@ -25,6 +29,7 @@ public class ModelDatabase {
         } catch (NumberFormatException e) {
             this.menu_price = 0;
         }
+        this.qty = 0;
     }
 
     // Getter and Setter for id_menu
@@ -35,7 +40,6 @@ public class ModelDatabase {
         this.id_menu = id_menu;
     }
 
-    // Getter and Setter for key
     public String getKey() {
         return key;
     }
@@ -43,7 +47,6 @@ public class ModelDatabase {
         this.key = key;
     }
 
-    // Getter and Setter for menu_type
     public String getMenu_type() {
         return menu_type;
     }
@@ -51,7 +54,6 @@ public class ModelDatabase {
         this.menu_type = menu_type;
     }
 
-    // Getter and Setter for menu_name
     public String getMenu_name() {
         return menu_name;
     }
@@ -59,7 +61,6 @@ public class ModelDatabase {
         this.menu_name = menu_name;
     }
 
-    // Getter and Setter for menu_price
     public int getMenu_price() {
         return menu_price;
     }
@@ -67,7 +68,6 @@ public class ModelDatabase {
         this.menu_price = menu_price;
     }
 
-    // Getter and Setter for menu_remarks
     public String getMenu_remarks() {
         return menu_remarks;
     }
@@ -78,8 +78,21 @@ public class ModelDatabase {
     public String getImageUrl() {
         return imageUrl;
     }
-
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public int getQty() {
+        return qty;
+    }
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public String getFormattedMenuPrice() {
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.GERMAN);
+        return numberFormat.format(menu_price);
+    }
+
+
 }

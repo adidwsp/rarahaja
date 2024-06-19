@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -20,17 +19,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class OrderFoodFragment extends Fragment {
-    AdapterDatabase adapterDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     ArrayList<ModelDatabase> foodArrayList;
     RecyclerView order_food;
-    ImageButton btn_back;
-    private RecyclerView recyclerView;
     private AdapterOrder adapterOrder;
-    private List<Integer> orderQuantities;
+
+    private OrderActivity orderActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,19 +39,9 @@ public class OrderFoodFragment extends Fragment {
         order_food.setLayoutManager(layoutManager);
         order_food.setItemAnimator(new DefaultItemAnimator());
 
+        orderActivity = (OrderActivity) getActivity();
+
         showMenu();
-
-        recyclerView = view.findViewById(R.id.order_food);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        // Inisialisasi daftar jumlah makanan dengan contoh data
-        orderQuantities = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            orderQuantities.add(0); // Set awal jumlah pesanan ke 0
-        }
-
-        adapterOrder = new AdapterOrder(getContext(), orderQuantities);
-        recyclerView.setAdapter(adapterOrder);
 
         return view;
     }
@@ -71,8 +57,8 @@ public class OrderFoodFragment extends Fragment {
                         foodArrayList.add(modelDatabase);
                     }
                 }
-                adapterDatabase = new AdapterDatabase(getContext(), foodArrayList, R.layout.menu_order_view);
-                order_food.setAdapter(adapterDatabase);
+                adapterOrder = new AdapterOrder(getContext(), foodArrayList, orderActivity);
+                order_food.setAdapter(adapterOrder);
             }
 
             @Override

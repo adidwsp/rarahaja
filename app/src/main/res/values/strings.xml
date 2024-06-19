@@ -3,7 +3,7 @@
 
     <!-- String untuk halaman awal -->
     <string name="kedai">Kedai Rarahaja</string>
-    <string name="tentang">Aplikasi kasir ini untuk membantu mempermudah proses transaksi pada kedai Rarahaj. Digunakan untuk staff bagian kasir yang bertugas saat cafe beroperasi. Kasir diharapkan bisa bekerja menjadi lebih optimal. </string>
+    <string name="tentang">Aplikasi manajemen pesanan berbasis Android yang dirancang untuk memudahkan pengelolaan pemesanan makanan di kedai. </string>
     <string name="penanda">Cashier Rarahaja App By Tugas Negara Team</string>
 
     <!-- String untuk halaman home -->

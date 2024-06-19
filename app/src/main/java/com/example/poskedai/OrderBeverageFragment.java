@@ -1,6 +1,9 @@
 package com.example.poskedai;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -8,11 +11,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageButton;
-
+import com.example.poskedai.adapter.AdapterOrder;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,14 +20,13 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-
 public class OrderBeverageFragment extends Fragment {
-
-    AdapterDatabase adapterDatabase;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     ArrayList<ModelDatabase> foodArrayList;
     RecyclerView order_beverage;
-    ImageButton btn_back;
+    private AdapterOrder adapterOrder;
+    private OrderActivity orderActivity;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,6 +37,8 @@ public class OrderBeverageFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         order_beverage.setLayoutManager(layoutManager);
         order_beverage.setItemAnimator(new DefaultItemAnimator());
+
+        orderActivity = (OrderActivity) getActivity();
 
         showMenu();
 
@@ -52,17 +52,17 @@ public class OrderBeverageFragment extends Fragment {
                 foodArrayList = new ArrayList<>();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ModelDatabase modelDatabase = item.getValue(ModelDatabase.class);
-                    if (modelDatabase != null && "Minuman".equals(modelDatabase.getMenu_type())) {
+                    if (modelDatabase != null && "Koncian".equals(modelDatabase.getMenu_type())) {
                         foodArrayList.add(modelDatabase);
                     }
                 }
-                adapterDatabase = new AdapterDatabase(getContext(), foodArrayList, R.layout.menu_order_view);
-                order_beverage.setAdapter(adapterDatabase);
+                adapterOrder = new AdapterOrder(getContext(), foodArrayList, orderActivity);
+                order_beverage.setAdapter(adapterOrder);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                // Handle possible errors.
             }
         });
     }

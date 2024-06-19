@@ -1,19 +1,17 @@
 package com.example.poskedai;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.widget.ImageButton;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -63,7 +61,7 @@ public class BeverageFragment extends Fragment {
                 foodArrayList = new ArrayList<>();
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ModelDatabase modelDatabase = item.getValue(ModelDatabase.class);
-                    if (modelDatabase != null && "Minuman".equals(modelDatabase.getMenu_type())) {
+                    if (modelDatabase != null && "Koncian".equals(modelDatabase.getMenu_type())) {
                         foodArrayList.add(modelDatabase);
                     }
                 }

@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
                 if (item.getItemId() == R.id.cart) {
-                    openFragment(new CartFragment());
+                    openFragment(new OrderFoodFragment());
                     return true;
                 }
                 if (item.getItemId() == R.id.account) {

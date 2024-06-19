@@ -20,7 +20,7 @@ public class TabOrderAdapter extends FragmentStateAdapter {
             case 1:
                 return new OrderBeverageFragment();
             case 2:
-                return new OrderCamilanFragment();
+                return new OrderSnackFragment();
             default:
                 return new OrderFoodFragment();
         }

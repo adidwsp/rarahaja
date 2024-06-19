@@ -1,10 +1,8 @@
 package com.example.poskedai;
 
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,15 +10,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.widget.ImageButton;
-
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
 public class FoodFragment extends Fragment {
@@ -39,6 +34,11 @@ public class FoodFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         view_menu.setLayoutManager(layoutManager);
         view_menu.setItemAnimator(new DefaultItemAnimator());
+
+        // Initialize the adapter with an empty list
+        foodArrayList = new ArrayList<>();
+        adapterDatabase = new AdapterDatabase(getContext(), foodArrayList, R.layout.data_menu);
+        view_menu.setAdapter(adapterDatabase);
 
         showMenu();
 
@@ -60,15 +60,14 @@ public class FoodFragment extends Fragment {
         databaseReference.child("tb_menu").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                foodArrayList = new ArrayList<>();
+                foodArrayList.clear();  // Clear the list first to avoid duplication
                 for (DataSnapshot item : snapshot.getChildren()) {
                     ModelDatabase modelDatabase = item.getValue(ModelDatabase.class);
-                    if (modelDatabase != null && "Makanan".equals(modelDatabase.getMenu_type())) {
+                    if (modelDatabase != null && "Pondasi".equals(modelDatabase.getMenu_type())) {
                         foodArrayList.add(modelDatabase);
                     }
                 }
-                adapterDatabase = new AdapterDatabase(getContext(), foodArrayList);
-                view_menu.setAdapter(adapterDatabase);
+                adapterDatabase.notifyDataSetChanged();  // Notify the adapter that data has changed
             }
 
             @Override

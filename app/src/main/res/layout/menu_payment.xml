@@ -25,8 +25,8 @@
 
             <ImageView
                 android:id="@+id/menu_image"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/menu"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -43,6 +43,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:textSize="18dp"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 android:text="Nama Menu"/>
@@ -52,14 +53,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:text="Harga : Rp. 0"/>
-            <TextView
-                android:id="@+id/menu_remarks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="Keterangan Singkat"/>
+                android:textSize="12dp"
+                android:text="3 x Rp. 25.000"/>
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

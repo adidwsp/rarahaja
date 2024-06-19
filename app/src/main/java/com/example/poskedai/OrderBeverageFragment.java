@@ -56,7 +56,7 @@ public class OrderBeverageFragment extends Fragment {
                         foodArrayList.add(modelDatabase);
                     }
                 }
-                adapterDatabase = new AdapterDatabase(getContext(), foodArrayList);
+                adapterDatabase = new AdapterDatabase(getContext(), foodArrayList, R.layout.menu_order_view);
                 order_beverage.setAdapter(adapterDatabase);
             }
 

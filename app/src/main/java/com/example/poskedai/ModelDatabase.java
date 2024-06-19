@@ -1,25 +1,38 @@
 package com.example.poskedai;
 
 public class ModelDatabase {
+    private String id_menu;
     private String menu_type;
     private String menu_name;
     private int menu_price;
     private String menu_remarks;
+    private String imageUrl;
     private String key;
 
     public ModelDatabase() {
         // Default constructor required for calls to DataSnapshot.getValue(ModelDatabase.class)
     }
 
-    public ModelDatabase(String menu_type, String menu_name, String price, String menu_remarks) {
+    // Constructor
+    public ModelDatabase(String id_menu, String menu_type, String menu_name, String price, String menu_remarks, String imageUrl) {
+        this.id_menu = id_menu;
         this.menu_type = menu_type;
         this.menu_name = menu_name;
         this.menu_remarks = menu_remarks;
+        this.imageUrl = imageUrl;
         try {
             this.menu_price = Integer.parseInt(price);
         } catch (NumberFormatException e) {
             this.menu_price = 0;
         }
+    }
+
+    // Getter and Setter for id_menu
+    public String getId_menu() {
+        return id_menu;
+    }
+    public void setId_menu(String id_menu) {
+        this.id_menu = id_menu;
     }
 
     // Getter and Setter for key
@@ -60,5 +73,13 @@ public class ModelDatabase {
     }
     public void setMenu_remarks(String menu_remarks) {
         this.menu_remarks = menu_remarks;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -17,6 +17,7 @@
         android:textColor="@color/colorPrimary"
         android:textSize="24dp"
         android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
     <androidx.cardview.widget.CardView
@@ -45,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:text="Makanan"
+                android:text="Pondasi"
                 android:textColor="@color/black"
                 android:textSize="24dp"
                 android:textStyle="bold" />
@@ -66,7 +67,7 @@
         android:layout_margin="16dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
-        app:layout_constraintBottom_toTopOf="@+id/camilan_card"
+        app:layout_constraintBottom_toTopOf="@+id/snack_card"
         app:layout_constraintTop_toBottomOf="@+id/food_card">
 
         <LinearLayout
@@ -100,7 +101,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/camilan_card"
+        android:id="@+id/snack_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

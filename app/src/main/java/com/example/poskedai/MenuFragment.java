@@ -17,7 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MenuFragment extends Fragment {
     TextView textView;
-    CardView foodCard, beverageCard;
+    CardView foodCard, beverageCard, snackCard;
     private FloatingActionButton btn_add;
     @Nullable
     @Override
@@ -26,6 +26,7 @@ public class MenuFragment extends Fragment {
         if (view != null) {
             foodCard = view.findViewById(R.id.food_card);
             beverageCard = view.findViewById(R.id.beverage_card);
+            snackCard = view.findViewById(R.id.snack_card);
             btn_add = view.findViewById(R.id.btn_add);
 
             foodCard.setOnClickListener(new View.OnClickListener() {
@@ -39,6 +40,12 @@ public class MenuFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     loadFragment(new BeverageFragment());
+                }
+            });
+            snackCard.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loadFragment(new SnackFragment());
                 }
             });
             btn_add.setOnClickListener(new View.OnClickListener() {

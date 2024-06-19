@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".OrderFoodFragment">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/order_food"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="16dp"
-        tools:listitem="@layout/data_menu"/>
+        tools:listitem="@layout/menu_order_view"/>
 </RelativeLayout>

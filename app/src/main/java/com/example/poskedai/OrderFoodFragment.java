@@ -34,6 +34,7 @@ public class OrderFoodFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_order_food, container, false);
 
+        adapterOrder = new AdapterOrder(getContext(), foodArrayList, orderActivity);
         order_food = view.findViewById(R.id.order_food);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         order_food.setLayoutManager(layoutManager);
@@ -58,6 +59,7 @@ public class OrderFoodFragment extends Fragment {
                     }
                 }
                 adapterOrder = new AdapterOrder(getContext(), foodArrayList, orderActivity);
+                adapterOrder.notifyDataSetChanged();
                 order_food.setAdapter(adapterOrder);
             }
 

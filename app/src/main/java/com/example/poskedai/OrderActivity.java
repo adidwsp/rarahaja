@@ -1,6 +1,7 @@
 package com.example.poskedai;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -82,6 +83,7 @@ public class OrderActivity extends AppCompatActivity {
             }
         }).attach();
 
+
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +94,8 @@ public class OrderActivity extends AppCompatActivity {
         btn_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Biarkan kosong untuk sekarang
+                Intent intent = new Intent(OrderActivity.this, PaymentActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -109,7 +112,7 @@ public class OrderActivity extends AppCompatActivity {
         DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("tb_cart");
         String key = cartRef.push().getKey();
         if (key != null) {
-            cartRef.child(key).setValue(new CartItem(menu.getId_menu(), menu.getMenu_price(), menu.getQty(), menu.getQty() * menu.getMenu_price()));
+            cartRef.child(key).setValue(new CartItem(menu.getId_menu(), menu.getMenu_name(), menu.getMenu_price(), menu.getQty(), menu.getQty() * menu.getMenu_price(), menu.getImageUrl()));
         }
     }
 
@@ -122,7 +125,8 @@ public class OrderActivity extends AppCompatActivity {
                     CartItem cartItem = snapshot.getValue(CartItem.class);
                     if (cartItem != null) {
                         cartItem.setTotal_price(menu.getQty() * menu.getMenu_price());
-                        cartItem.setQuantity(menu.getQty());
+                        cartItem.setQty(menu.getQty());
+                        cartItem.setImageUrl(menu.getImageUrl());
                         snapshot.getRef().setValue(cartItem);
                     }
                 }

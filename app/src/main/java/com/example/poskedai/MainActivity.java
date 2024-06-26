@@ -1,21 +1,13 @@
 package com.example.poskedai;
 
-import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
                 if (item.getItemId() == R.id.cart) {
-                    openFragment(new OrderFoodFragment());
+                    openFragment(new CartFragment());
                     return true;
                 }
                 if (item.getItemId() == R.id.account) {

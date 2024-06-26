@@ -3,51 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".PaymentActivity">
+    tools:context=".CartFragment">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:background="@color/white">
-
-        <ImageButton
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="?attr/selectableItemBackground"
-            android:src="@drawable/ic_back"/>
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Pemesanan"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:text="KERANJANG BELANJA"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/payment_item"
+        android:id="@+id/cart_order_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:padding="16dp"
-        tools:listitem="@layout/menu_payment"/>
+        tools:listitem="@layout/menu_order_view" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
+        android:backgroundTint="@color/colorSecondary"
+        android:backgroundTintMode="add"
         android:background="@color/white">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rincian Pesanan"
+            android:gravity="center"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -65,11 +55,11 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/total_qty_order"
+                android:id="@+id/total_quantity_order"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="10"
+                android:text="5"
                 android:textAlignment="viewEnd"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -97,6 +87,7 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/btn_checkout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

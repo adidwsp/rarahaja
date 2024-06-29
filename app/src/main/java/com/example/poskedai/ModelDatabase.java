@@ -1,9 +1,10 @@
 package com.example.poskedai;
 
+import java.io.Serializable;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class ModelDatabase {
+public class ModelDatabase implements Serializable {
     private String id_menu;
     private String menu_type;
     private String menu_name;

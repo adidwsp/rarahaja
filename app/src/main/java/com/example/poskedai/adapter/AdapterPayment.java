@@ -45,6 +45,7 @@ public class AdapterPayment extends RecyclerView.Adapter<AdapterPayment.CartView
         Glide.with(context)
                 .load(cartItem.getImageUrl())
                 .into(holder.menu_image);
+
     }
 
     @Override

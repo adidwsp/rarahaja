@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,16 +24,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CartFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private List<CartItem> cartItemList;
     private AdapterCart adapterCart;
-    private TextView totalQtyTextView, totalPriceTextView;
+    private TextView totalQuantityTextView, totalPriceTextView;
     Button btn_checkout;
+    ImageButton btn_plus, btn_minus;
+    private int totalQuantity = 0;
+    private int totalPrice = 0;
 
     private DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("tb_cart");
 
@@ -47,12 +53,12 @@ public class CartFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
         recyclerView = view.findViewById(R.id.cart_order_list);
-        totalQtyTextView = view.findViewById(R.id.total_qty_order);
+        totalQuantityTextView = view.findViewById(R.id.total_quantity_order);
         totalPriceTextView = view.findViewById(R.id.total_price_order);
         btn_checkout = view.findViewById(R.id.btn_checkout);
 
         cartItemList = new ArrayList<>();
-        adapterCart = new AdapterCart(getContext(), cartItemList);
+        adapterCart = new AdapterCart(getContext(), cartItemList, this);
         recyclerView.setAdapter(adapterCart);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -67,6 +73,9 @@ public class CartFragment extends Fragment {
 
         });
 
+
+
+
         return view;
 
     }
@@ -78,14 +87,55 @@ public class CartFragment extends Fragment {
                 cartItemList.clear(); // Bersihkan list sebelum menambahkan data baru
                 for (DataSnapshot item : snapshot.getChildren()) {
                     CartItem cartItem = item.getValue(CartItem.class);
-                    cartItemList.add(cartItem);
+                    if (cartItem != null) {
+                        cartItemList.add(cartItem);
+                        totalQuantity += cartItem.getQty();
+                        totalPrice += cartItem.getQty() * cartItem.getMenu_price();
+                    }
                 }
                 adapterCart.notifyDataSetChanged(); // Beritahu adapter bahwa data telah berubah
+                updateTotals();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getContext(), "Gagal memuat data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void updateTotals() {
+        totalQuantityTextView.setText(String.valueOf(totalQuantity));
+        totalPriceTextView.setText("Rp. " + NumberFormat.getNumberInstance(Locale.getDefault()).format(totalPrice));
+    }
+
+    public void addToCart(ModelDatabase menu) {
+        DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("tb_cart");
+        String key = cartRef.push().getKey();
+        if (key != null) {
+            cartRef.child(key).setValue(new CartItem(menu.getId_menu(), menu.getMenu_name(), menu.getMenu_price(), menu.getQty(), menu.getQty() * menu.getMenu_price(), menu.getImageUrl()));
+        }
+    }
+
+    public void updateCart(ModelDatabase menu) {
+        DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("tb_cart");
+        cartRef.orderByChild("id_menu").equalTo(menu.getId_menu()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    CartItem cartItem = snapshot.getValue(CartItem.class);
+                    if (cartItem != null) {
+                        cartItem.setTotal_price(menu.getQty() * menu.getMenu_price());
+                        cartItem.setQty(menu.getQty());
+                        cartItem.setImageUrl(menu.getImageUrl());
+                        snapshot.getRef().setValue(cartItem);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle possible errors.
             }
         });
     }

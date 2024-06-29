@@ -2,6 +2,8 @@ package com.example.poskedai;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -29,8 +33,10 @@ public class PaymentActivity extends AppCompatActivity {
     private TextView totalPriceTextView, totalQuantityTextView;
     private int totalQuantity = 0;
     private int totalPrice = 0;
+    ImageButton btn_back;
 
     private DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("tb_cart");
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +44,9 @@ public class PaymentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
 
         paymentItem = findViewById(R.id.payment_item);
-        totalQuantityTextView = findViewById(R.id.total_quantity_order);
+        totalQuantityTextView = findViewById(R.id.total_qty_order);
         totalPriceTextView = findViewById(R.id.total_price_order);
+        btn_back = findViewById(R.id.btn_back);
 
         cartItemList = new ArrayList<>();
         adapterPayment = new AdapterPayment(PaymentActivity.this, cartItemList);
@@ -48,18 +55,31 @@ public class PaymentActivity extends AppCompatActivity {
 
         showMenu();
 
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void showMenu() {
         cartRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                cartItemList.clear(); // Bersihkan list sebelum menambahkan data baru
+                cartItemList.clear();
+                totalQuantity = 0;
+                totalPrice = 0;
                 for (DataSnapshot item : snapshot.getChildren()) {
                     CartItem cartItem = item.getValue(CartItem.class);
-                    cartItemList.add(cartItem);
+                    if (cartItem != null) {
+                        cartItemList.add(cartItem);
+                        totalQuantity += cartItem.getQty();
+                        totalPrice += cartItem.getQty() * cartItem.getMenu_price();
+                    }
                 }
-                adapterPayment.notifyDataSetChanged(); // Beritahu adapter bahwa data telah berubah
+                adapterPayment.notifyDataSetChanged();
+                updateTotals();
             }
 
             @Override
@@ -69,35 +89,8 @@ public class PaymentActivity extends AppCompatActivity {
         });
     }
 
-    public void updateTotals() {
-        DatabaseReference paymentRef = FirebaseDatabase.getInstance().getReference("tb_cart");
-        paymentRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                double totalQuantityTextView = 0;
-                double totalPriceTextView = 0;
-
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    if (snapshot.exists()) {
-                        Double qty = snapshot.child("qty").getValue(Double.class);
-                        Double price = snapshot.child("menu_price").getValue(Double.class);
-
-                        if (qty != null && price != null) {
-                            totalQuantityTextView += qty;
-                            totalPriceTextView += price * qty; // Kalkulasi total price berdasarkan qty
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // Handle possible errors.
-            }
-
-        });
-
-
+    private void updateTotals() {
+        totalQuantityTextView.setText(String.valueOf(totalQuantity));
+        totalPriceTextView.setText("Rp. " + NumberFormat.getNumberInstance(Locale.getDefault()).format(totalPrice));
     }
 }

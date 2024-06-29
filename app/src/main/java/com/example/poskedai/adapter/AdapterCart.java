@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.poskedai.CartFragment;
 import com.example.poskedai.model.CartItem;
 import com.example.poskedai.R;
 
@@ -22,10 +24,12 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartViewHolder
 
     private Context context;
     private List<CartItem> cartItemList;
+    private CartFragment CartFragment;
 
-    public AdapterCart(Context context, List<CartItem> cartItemList) {
+    public AdapterCart(Context context, List<CartItem> cartItemList, CartFragment CartFragment) {
         this.context = context;
         this.cartItemList = cartItemList;
+        this.CartFragment = CartFragment;
     }
 
     @NonNull
@@ -45,6 +49,20 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartViewHolder
         Glide.with(context)
                 .load(cartItem.getImageUrl())
                 .into(holder.menu_image);
+
+//        holder.btn_plus.setOnClickListener(v -> {
+//            int currentQuantity = Integer.parseInt(holder.quantity.getText().toString());
+//            currentQuantity++;
+//            holder.quantity.setText(String.valueOf(currentQuantity));
+//            cartItem.setQty(currentQuantity);
+//
+//            if (currentQuantity == 1) {
+//                CartFragment.addToCart(cartItem);
+//            } else {
+//                CartFragment.updateCart(cartItem);
+//            }
+//        });
+
     }
 
     @Override
@@ -54,6 +72,7 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartViewHolder
 
     static class CartViewHolder extends RecyclerView.ViewHolder {
         public ImageView menu_image;
+        ImageButton btn_minus, btn_plus;
         TextView menuName, menuRemarks, menuPrice, quantity;
 
         public CartViewHolder(@NonNull View itemView) {
@@ -63,6 +82,8 @@ public class AdapterCart extends RecyclerView.Adapter<AdapterCart.CartViewHolder
             menuPrice = itemView.findViewById(R.id.menu_price);
             quantity = itemView.findViewById(R.id.qty_order);
             menu_image = itemView.findViewById(R.id.menu_image);
+            btn_minus = itemView.findViewById(R.id.btn_minus);
+            btn_plus = itemView.findViewById(R.id.btn_plus);
         }
     }
 }

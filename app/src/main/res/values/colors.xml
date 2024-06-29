@@ -8,6 +8,7 @@
 
     <!-- Secondary Colors -->
     <color name="colorSecondary">#00A050</color>
+    <color name="colorSecondaryLight">#00EF79</color>
     <color name="colorSecondaryVariant">#008542</color>
     <color name="colorOnSecondary">#FFFFFF</color>
 
@@ -15,6 +16,7 @@
     <color name="colorAccent">#F7FFF9</color>
 
     <!-- Additional Colors -->
+    <color name="red">#B80000</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="gray">#CCCCCC</color>

@@ -105,7 +105,7 @@ public class OrderActivity extends AppCompatActivity {
         totalPrice += price;
 
         totalQuantityTextView.setText(String.valueOf(totalQuantity));
-        totalPriceTextView.setText("Rp " + NumberFormat.getNumberInstance(Locale.getDefault()).format(totalPrice) + ".00");
+        totalPriceTextView.setText("Rp " + NumberFormat.getNumberInstance(Locale.getDefault()).format(totalPrice));
     }
 
     public void addToCart(ModelDatabase menu) {

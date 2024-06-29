@@ -7,6 +7,15 @@
     tools:context=".MainActivity"
     android:id="@+id/fragment_container">
 
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:background="@color/colorSecondaryLight"
+        android:layout_marginStart="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
@@ -15,7 +24,7 @@
         android:gravity="center"
         android:text="KATEGORI MENU"
         android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,9 +33,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        android:layout_height="800dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="50dp"
+        tools:layout_editor_absoluteX="0dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -60,27 +71,27 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginEnd="40dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="25dp"
-                    app:cardElevation="12dp"
-                    tools:layout_editor_absoluteX="16dp"
-                    android:backgroundTint="@color/colorAccent">
+                    app:cardElevation="16dp"
+                    tools:layout_editor_absoluteX="16dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="60dp"
                         android:layout_marginEnd="48dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="32dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="Pondasi"
-                            android:textColor="@color/black"
+                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="24dp"
                             android:textStyle="bold" />
 
@@ -90,16 +101,16 @@
                             android:text="Total item tersedia : 20 item" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:padding="10dp"
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow"
-                    android:background="@drawable/bg_oval"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="24dp"
-                    android:elevation="32dp"/>
+                    app:elevation="24dp"
+                    app:backgroundTint="@android:color/white"
+                    app:tint="@color/colorPrimary" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -132,24 +143,23 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="25dp"
-                    app:cardElevation="8dp"
-                    tools:layout_editor_absoluteX="16dp"
-                    android:backgroundTint="@color/colorAccent">
+                    app:cardElevation="16dp"
+                    tools:layout_editor_absoluteX="16dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="60dp"
                         android:layout_marginEnd="48dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp"
+                        android:layout_marginTop="32dp"
+                        android:layout_marginBottom="32dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="Koncian"
-                            android:textColor="@color/black"
+                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="24dp"
                             android:textStyle="bold" />
 
@@ -160,16 +170,16 @@
                             android:text="Total item tersedia : 20 item" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:padding="10dp"
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow"
-                    android:background="@drawable/bg_oval"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="24dp"
-                    android:elevation="32dp"/>
+                    app:elevation="24dp"
+                    app:backgroundTint="@android:color/white"
+                    app:tint="@color/colorPrimary" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -202,24 +212,23 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp"
                     app:cardCornerRadius="25dp"
-                    app:cardElevation="8dp"
-                    tools:layout_editor_absoluteX="16dp"
-                    android:backgroundTint="@color/colorAccent">
+                    app:cardElevation="16dp"
+                    tools:layout_editor_absoluteX="16dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="60dp"
                         android:layout_marginEnd="48dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginBottom="24dp"
+                        android:layout_marginTop="32dp"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="Camilan"
-                            android:textColor="@color/black"
+                            android:textColor="@color/colorPrimaryDark"
                             android:textSize="24dp"
                             android:textStyle="bold" />
 
@@ -230,16 +239,16 @@
                             android:text="Total item tersedia : 20 item"/>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:padding="10dp"
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:src="@drawable/ic_arrow"
-                    android:background="@drawable/bg_oval"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="24dp"
-                    android:elevation="32dp"/>
+                    app:elevation="24dp"
+                    app:backgroundTint="@android:color/white"
+                    app:tint="@color/colorPrimary" />
             </RelativeLayout>
         </LinearLayout>
 

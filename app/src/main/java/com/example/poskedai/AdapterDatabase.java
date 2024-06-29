@@ -4,11 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -41,12 +44,24 @@ public class AdapterDatabase extends RecyclerView.Adapter<AdapterDatabase.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ModelDatabase data = list.get(position);
         holder.menu_name.setText(data.getMenu_name());
-        holder.menu_price.setText("Rp. " + data.getMenu_price());
+        holder.menu_price.setText("Rp. " + data.getFormattedMenuPrice());
         holder.menu_remarks.setText(data.getMenu_remarks());
         // Load image using Glide
         Glide.with(context)
                 .load(data.getImageUrl())
                 .into(holder.menu_image);
+
+        // Set onClickListener for Edit button
+        holder.btn_edit_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction transaction = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+                EditMenuFragment editMenuFragment = EditMenuFragment.newInstance(data);
+                transaction.replace(R.id.content, editMenuFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
     }
 
     @Override
@@ -57,6 +72,7 @@ public class AdapterDatabase extends RecyclerView.Adapter<AdapterDatabase.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView menu_image;
         TextView menu_name, menu_price, menu_remarks;
+        ImageButton btn_edit_menu;
         CardView card_menu;
 
         public ViewHolder(@NonNull View itemView) {
@@ -65,6 +81,7 @@ public class AdapterDatabase extends RecyclerView.Adapter<AdapterDatabase.ViewHo
             menu_price = itemView.findViewById(R.id.menu_price);
             menu_remarks = itemView.findViewById(R.id.menu_remarks);
             menu_image = itemView.findViewById(R.id.menu_image);
+            btn_edit_menu = itemView.findViewById(R.id.btn_edit_menu);
             card_menu = itemView.findViewById(R.id.card_menu);
         }
     }

@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity {
                     openFragment(new MainFragment());
                     return true;
                 }
+                if (item.getItemId() == R.id.transaction) {
+                    openFragment(new TransactionFragment());
+                    return true;
+                }
                 if (item.getItemId() == R.id.menu) {
                     openFragment(new MenuFragment());
                     return true;

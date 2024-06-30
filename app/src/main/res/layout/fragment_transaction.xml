@@ -10,10 +10,10 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Riwayat Transaksi"
+        android:text="RIWAYAT TRANSAKSI"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimary"
         android:gravity="center"
         android:layout_margin="16dp"/>
 

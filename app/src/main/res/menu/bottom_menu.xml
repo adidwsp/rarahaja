@@ -5,6 +5,10 @@
         android:icon="@drawable/home"
         android:title="Beranda" />
 
+    <item android:id="@+id/transaction"
+        android:icon="@drawable/transaction"
+        android:title="Transaksi"/>
+
     <item android:id="@+id/menu"
         android:icon="@drawable/menu"
         android:title="Menu"/>

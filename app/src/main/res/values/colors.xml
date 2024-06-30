@@ -22,4 +22,6 @@
     <color name="gray">#CCCCCC</color>
     <color name="lightGray">#DFDFDF</color>
     <color name="lightGreen">#DCFFE5</color>
+    <color name="darkGray">#434343</color>
+
 </resources>

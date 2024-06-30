@@ -112,7 +112,7 @@ public class OrderActivity extends AppCompatActivity {
         DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("tb_cart");
         String key = cartRef.push().getKey();
         if (key != null) {
-            cartRef.child(key).setValue(new CartItem(menu.getId_menu(), menu.getMenu_name(), menu.getMenu_price(), menu.getQty(), menu.getQty() * menu.getMenu_price(), menu.getImageUrl()));
+            cartRef.child(key).setValue(new CartItem(menu.getId_menu(), menu.getMenu_name(), menu.getMenu_type(), menu.getMenu_remarks(), menu.getMenu_price(), menu.getQty(), menu.getQty() * menu.getMenu_price(), menu.getImageUrl()));
         }
     }
 

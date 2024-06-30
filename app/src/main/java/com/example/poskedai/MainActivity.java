@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
                 if (item.getItemId() == R.id.account) {
-                    openFragment(new AccountFragment());
+                    openFragment(new TransactionFragment());
                     return true;
                 }
                 return false;

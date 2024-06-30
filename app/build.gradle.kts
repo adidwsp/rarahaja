@@ -42,6 +42,7 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     implementation("com.google.firebase:firebase-storage:20.0.1")
     implementation("com.github.bumptech.glide:glide:4.12.0")
+    implementation("com.orhanobut:dialogplus:1.11@aar")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
     implementation(libs.firebase.database)
     testImplementation(libs.junit)

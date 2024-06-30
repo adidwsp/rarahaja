@@ -1,6 +1,8 @@
 package com.example.poskedai;
 
+import android.app.AlertDialog;
 import android.content.ContentResolver;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -155,24 +157,43 @@ public class EditMenuFragment extends Fragment {
 
     private void deleteMenuFromDatabase(String id_menu) {
         if (id_menu != null && !id_menu.isEmpty()) {
-            database.child("tb_menu").child(id_menu).removeValue()
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void unused) {
-                            Toast.makeText(getActivity(), "Menu berhasil dihapus", Toast.LENGTH_SHORT).show();
-                            getParentFragmentManager().popBackStack();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getActivity(), "Gagal menghapus menu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+            // Buat dialog konfirmasi sebelum menghapus
+            AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
+            builder.setTitle("Konfirmasi");
+            builder.setMessage("Anda yakin ingin menghapus menu ini?");
+            builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // User mengkonfirmasi untuk menghapus
+                    database.child("tb_menu").child(id_menu).removeValue()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(getActivity(), "Menu berhasil dihapus", Toast.LENGTH_SHORT).show();
+                                    getParentFragmentManager().popBackStack();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getActivity(), "Gagal menghapus menu: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            });
+            builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // User membatalkan penghapusan
+                    dialog.dismiss(); // Tutup dialog
+                }
+            });
+            builder.show();
         } else {
             Toast.makeText(getActivity(), "ID Menu tidak valid", Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void uploadImageAndSaveData(String menuType, String menuName, String price, String menuRemarks) {
         StorageReference fileReference = storageReference.child(System.currentTimeMillis() + "." + getFileExtension(imageUri));

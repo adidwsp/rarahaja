@@ -1,8 +1,10 @@
 package com.example.poskedai;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.orhanobut.dialogplus.DialogPlus;
+import com.orhanobut.dialogplus.ViewHolder;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -34,6 +38,8 @@ public class PaymentActivity extends AppCompatActivity {
     private int totalQuantity = 0;
     private int totalPrice = 0;
     ImageButton btn_back;
+    Button btn_payment;
+    ImageButton btn_qr, btn_cash;
 
     private DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("tb_cart");
 
@@ -47,6 +53,7 @@ public class PaymentActivity extends AppCompatActivity {
         totalQuantityTextView = findViewById(R.id.total_qty_order);
         totalPriceTextView = findViewById(R.id.total_price_order);
         btn_back = findViewById(R.id.btn_back);
+        btn_payment = findViewById(R.id.btn_payment);
 
         cartItemList = new ArrayList<>();
         adapterPayment = new AdapterPayment(PaymentActivity.this, cartItemList);
@@ -59,6 +66,35 @@ public class PaymentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        btn_payment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Buat dialogPlus
+                final DialogPlus dialogPlus = DialogPlus.newDialog(PaymentActivity.this)
+                        .setContentHolder(new ViewHolder(R.layout.payment_method_popup))
+                        .setExpanded(true, 700)
+                        .create();
+
+                dialogPlus.show();
+
+                // Cari tombol btn_qr di dalam dialog dan atur klik listener untuk menampilkan dialog QRIS
+                View dialogView = dialogPlus.getHolderView();
+                if (dialogView != null) {
+                    View btn_qr = dialogView.findViewById(R.id.btn_qr);
+                    if (btn_qr != null) {
+                        btn_qr.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(PaymentActivity.this, QRISActivity.class);
+                                startActivity(intent);
+                                dialogPlus.dismiss();
+                            }
+                        });
+                    }
+                }
             }
         });
     }

@@ -4,6 +4,7 @@ public class CartItem {
     private String id_menu;
     private String menu_name;
     private String menu_remarks;
+    private String menu_type;
     private int menu_price, total_price;
     private int qty;
 
@@ -13,9 +14,12 @@ public class CartItem {
     public CartItem() {
     }
 
-    public CartItem(String id_menu, String menu_name, int menu_price, int qty, int total_price, String imageUrl) {
+
+    public CartItem(String id_menu, String menu_name, String menu_type, String menu_remarks, int menu_price, int qty, int total_price, String imageUrl) {
         this.id_menu = id_menu;
         this.menu_name = menu_name;
+        this.menu_type = menu_type;
+        this.menu_remarks = menu_remarks;
         this.menu_price = menu_price;
         this.qty = qty;
         this.total_price = total_price;
@@ -36,6 +40,14 @@ public class CartItem {
 
     public void setMenu_name(String menu_name) {
         this.menu_name = menu_name;
+    }
+
+    public String getMenu_type() {
+        return menu_type;
+    }
+
+    public void setMenu_type(String menu_type) {
+        this.menu_type = menu_type;
     }
 
     public String getMenu_remarks() {
@@ -63,11 +75,11 @@ public class CartItem {
     }
 
     public int getTotal_price() {
-        return menu_price;
+        return total_price;
     }
 
-    public void setTotal_price(int menu_price) {
-        this.menu_price = menu_price;
+    public void setTotal_price(int totalPrice) {
+        this.total_price = total_price;
     }
     public String getImageUrl() {
         return imageUrl;
